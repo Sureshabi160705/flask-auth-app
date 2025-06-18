@@ -35,7 +35,7 @@ pycparser==2.22
 Pygments==2.19.1
 pymongo==4.13.2
 pyOpenSSL==25.0.0
-pypiwin32==223
+pywin32==310
 python-dotenv==1.1.0
 pytz==2025.2
 service-identity==24.2.0
