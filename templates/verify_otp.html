@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verify OTP</title>
+    <style>
+        body {
+            background: url("/static/otp.png") center center / cover no-repeat fixed;
+            font-family: 'Segoe UI', sans-serif;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background: rgba(0, 0, 0, 0.75);
+            padding: 30px;
+            border-radius: 12px;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 12px 0;
+            border: none;
+            border-radius: 6px;
+        }
+
+        input[type="submit"], #resend-btn {
+            background-color: #ff9800;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+
+        .timer {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: #ffcc00;
+        }
+
+        #resend-btn {
+            display: none;
+            background-color: #03a9f4;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Enter OTP</h2>
+        <div class="timer" id="timer">1.30</div>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST">
+            <input type="text" name="otp" placeholder="6-digit OTP" required><br>
+            <p>Enter the OTP sent to your Registered email.</p>
+            <input type="submit" value="Verify OTP">
+        </form>
+
+        <form method="POST" action="/resend-otp">
+            <button type="submit" id="resend-btn">Resend OTP</button>
+        </form>
+    </div>
+
+    <script>
+        let timerElement = document.getElementById("timer");
+        let resendBtn = document.getElementById("resend-btn");
+        let time = 90;
+
+        let countdown = setInterval(function () {
+            let minutes = Math.floor(time / 60);
+            let seconds = time % 60;
+            timerElement.textContent =
+                (minutes < 10 ? "0" : "") + minutes + ":" +
+                (seconds < 10 ? "0" : "") + seconds;
+            time--;
+
+            if (time < 0) {
+                clearInterval(countdown);
+                timerElement.textContent = "OTP Expired";
+                document.querySelector('input[name="otp"]').disabled = true;
+                document.querySelector('input[type="submit"]').disabled = true;
+                resendBtn.style.display = "inline-block";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | AS Shop</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">AS Shop</div>
+        <div>
+            <a href="/home">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p>Email: support@asshop.com</p>
+        <h2>Contact Form</h2>
+        <div class="form-container">
+            <form id="contactForm" action="https://formcarry.com/s/1taKE6d_WZS" method="POST"
+                accept-charset="UTF-8">
+                <div>
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div>
+                    <label for="email">Email:</label><br>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="message">Problem / Message:</label><br>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit">Submit</button>
+                <p id="successMessage" style="display: none; color: green; margin-top: 10px;">Thank you! We'll get back
+                    to you soon.</p>
+            </form>
+        </div>
+
+        <!-- JS for validation and success message -->
+        <script>
+            document.getElementById("contactForm").addEventListener("submit", function (e) {
+                // Validation
+                const name = document.getElementById("name").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const message = document.getElementById("message").value.trim();
+
+                if (!name || !email || !message) {
+                    alert("Please fill out all fields.");
+                    e.preventDefault();
+                    return;
+                }
+
+                // Optional: Show success message after Formcarry processes it
+                // (Here we use a basic simulation)
+                setTimeout(() => {
+                    document.getElementById("successMessage").style.display = "block";
+                }, 1000);
+            });
+        </script>
+
+        <a href="/dashboard" class="back-button">← Back to Dashboard</a>
+    </div>
+    <footer style="background:#111; color:#fff; padding:5px; text-align:center; margin-top: 10px;">
+        <p>© 2025 AS Shop. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

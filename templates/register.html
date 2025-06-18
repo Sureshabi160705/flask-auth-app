@@ -1,0 +1,55 @@
+<!-- templates/register.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Register</title>
+    <style>
+        body {
+            background: url("/static/register.png") center center / cover no-repeat fixed;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+        }
+
+        input[type="submit"] {
+            background: #00bcd4;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Register</h2>
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        <form method="POST">
+            <input type="text" name="username" placeholder="Username" required><br>
+            <input type="email" name="email" placeholder="Email" required><br>
+            <input type="password" name="password" placeholder="Password" required><br>
+            <input type="submit" value="Register">
+        </form>
+        <p>Already Have an account? <a href="/login">Go to Login</a></p>
+    </div>
+</body>
+
+</html>

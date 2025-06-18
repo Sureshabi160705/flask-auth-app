@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | AS Shop</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">AS Shop</div>
+        <div>
+            <a href="/home">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Welcome, {{ username }}!</h1>
+        <p>This is your dashboard.</p>
+    </div>
+    <footer style="background:#111; color:#fff; padding:5px; text-align:center; margin-top: 10px;">
+        <p>© 2025 AS Shop. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>

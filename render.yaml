@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: flask-auth-app
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: ""
+    startCommand: gunicorn app:app
+    envVars:
+      - key: SECRET_KEY
+        value: your_secret_key
+      - key: MONGO_URI
+        value: mongodb+srv://flaskuser:Flask%401234@cluster0.1jn4i.mongodb.net/authdb?retryWrites=true&w=majority&appName=Cluster0
+      - key: EMAIL
+        value: suresh752005@gmail.com
+      - key: EMAIL_PASSWORD
+        value: syjxfbszltvecccs
